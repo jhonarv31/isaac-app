@@ -1,0 +1,26 @@
+
+<div class="pages">
+  <div data-page="symptoms" class="page">
+	<div class="navbar">
+	  <div class="navbar-inner">
+		<div class="left sliding"><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a></div>
+		<div class="center sliding">ISAAC</div>
+		<div class="right sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+	  </div>
+	</div>
+    <div class="page-content">
+      <div class="content-block-title" style="text-align:center;">Top 10 Common Problems</div>
+      <div class="list-block">
+        <ul>{{#each symptoms}}
+          <li>
+            <a id={{StepID}} href="#" class="item-content item-link" onclick='symptomsdetail(this)'>
+              <div class="item-inner">
+                <div class="item-title">{{SymptomDesc}}</div>
+              </div>
+            </a>
+          </li>{{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

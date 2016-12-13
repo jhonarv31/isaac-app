@@ -1,0 +1,31 @@
+{"hardwareinformation": [
+            {
+                "vendor": "Volkswagen",
+                "model": "Passat",
+                "power": 152,
+                "speed": 280,
+                "weight": 1400,
+                "color": "black",
+                "year": 2012,
+                "description": ""
+            }, {
+                "vendor": "Skoda",
+                "model": "Superb",
+                "power": 152,
+                "speed": 260,
+                "weight": 1600,
+                "color": "white",
+                "year": 2013,
+                "description": ""
+            },
+            {
+                "vendor": "Ford",
+                "model": "Mustang",
+                "power": 480,
+                "speed": 320,
+                "weight": 1200,
+                "color": "red",
+                "year": 2014,
+                "description": ""
+            }
+        ]}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>ISAAC</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <p>Left panel content goes here</p>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+        <p>Right panel content goes here</p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-fixed toolbar-through">
+          <!-- Index Page-->
+          <div data-page="index" class="page mainpage">
+			<!-- Top Navbar-->
+			<div class="navbar">
+			  <div class="navbar-inner">
+				<div class="left"></div>
+				<div class="center sliding">ISAAC</div>
+				<div class="right"><a href="#" id="updateButton" class="link icon-only" onclick="updateLocalDB();"> <i class="fa fa-download"></i></a></div>
+			  </div>
+			</div>
+		  <!-- Search Bar -->
+			<form class="searchbar">
+				<div class="searchbar-input">
+					<input type="search" placeholder="Search">
+					<a href="#" class="searchbar-clear"></a>
+				</div>
+				<a href="#" class="searchbar-cancel">Cancel</a>
+			</form>
+			
+			<!-- Search Bar overlay-->
+			<div class="searchbar-overlay"></div>
+	
+            <div class="page-content">
+				<div class="content-block searchbar-not-found">
+					Nothing found
+				</div>	
+              <div class="content-block" style="height:95%; margin:0px;">
+                <div class="content-block-inner" style="height:100%;">
+                  <table style="margin:auto; height:100%; width: 100%; text-align:center;">
+					<tr>
+						<td><a href="#" id="hardwareinfo" onclick="mainHardwareInfo();"><span class="fa fa-desktop"></span><br/><span>Hardware Information</span></a></td>
+						<td><a href="#" id="listofproblem" onclick="mainListOfProblem();"><span class="fa fa-list-ol"></span><br/><span>List of Problem</span></a></td>
+					</tr>
+					<tr>
+						<td><a href="#" id="symptoms" onclick="mainSymptoms();"><span class="fa fa-stethoscope"></span><br/><span>Symptoms</span></a></td>
+						<td><a href="#" id="tips" onclick="mainTips();"><span class="fa fa-lightbulb-o"></span><br/><span>Tips</span></a></td>
+					</tr>
+					<tr>
+						<td><a href="#" id="videos" onclick="mainVideos();"><span class="fa fa-film"></span><br/><span>Videos</span></a></td>
+						<td><a href="#" id="about" onclick="mainAbout();"><span class="fa fa-user-circle-o"></span><br/><span>About</span></a></td>
+					</tr>
+				  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Toolbar-->
+        <div class="toolbar">
+          <div class="toolbar-inner"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+	<script type="text/javascript" src='js/sql.js'></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+</body>
+</html>
