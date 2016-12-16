@@ -40,7 +40,14 @@ i.tabbar-demo-icon-4 {
 }
 
 .mainpage .fa{
-	font-size: 30px;
+	font-size: 45px;
+}
+.fs{
+	font-size:20px;
+	font-weight:bold;
+}
+.fb{
+	font-size:30px;
 }
 
 .navbar-inner{
