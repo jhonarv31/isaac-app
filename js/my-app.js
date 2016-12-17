@@ -247,7 +247,7 @@ function mainSymptoms(){
 		objectStore.openCursor().onsuccess = function(event) {
 		  var cursor = event.target.result;	
 		  if (cursor) {
-			  if(cursor.value.IsHead=="1"){
+			  if(cursor.value.IsHead==id){
 				var sympData2 = new Object();
 				sympData2.StepID = cursor.value.StepID;
 				sympData2.SymptomDesc = cursor.value.SymptomDesc;
