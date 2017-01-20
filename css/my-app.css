@@ -34,29 +34,220 @@ i.tabbar-demo-icon-4 {
 }
 
 .mainpage td{
-	border: 1px solid #ccc;
-	padding: 20px;
-	width: 50%;
+	/*padding: 15px;
+	width: 40%;
+	color: #fff;
+	height: 10%;
+	margin: 5%;*/
+}
+
+.mainpage td a{
+	color: #fff;
 }
 
 .mainpage .fa{
-	font-size: 45px;
-}
-.fs{
-	font-size:20px;
-	font-weight:bold;
-}
-.fb{
-	font-size:30px;
+	font-size: 30px;
+	color: #fff;
 }
 
 .navbar-inner{
-	background: #483d8b;
+	background: #fff;
+	border-bottom: 2px solid #000;
+	color: #fff;
+	font-size: 1.3em;
+}
+
+.toolbar{
+	background: transparent;
 	color: #fff;
 }
 
 .toolbar-inner{
-	background: #483d8b;
+	/*background: #483d8b;*/
 	color: #fff;
 }
 
+#splash{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index:999;
+	background: url("../images/splashbg.jpg") no-repeat center center #fff / cover;
+}
+
+.symptomsButton1{
+	border: 2px solid #000;
+	border-radius: 10px;
+	padding: 10px 20px;
+	font-size: 3em;
+	color: #fff;
+	font-weight:bold;
+	background: #003333;
+}
+
+.symptomsButton2{
+	border: 2px solid #000;
+	border-radius: 10px;
+	padding: 10px 20px;
+	font-size: 3em;
+	color: #fff;
+	font-weight:bold;
+	background: #ff3333;
+}
+
+.symptomsList{
+	margin: none;
+	padding: 0px;
+}
+
+.symptomsList li{
+	display: inline-block;
+	margin: 10px;
+}
+
+#title{
+	/*top: 200px;
+	left: 70px;
+	position: fixed;*/
+    font-size: 4em;
+    color: #fff;
+    font-weight: bold;
+	margin-top: 150px;
+}
+
+#subtitle{
+	font-size: 1em;
+	font-weight:bold;
+	color: #fff;
+	margin: auto;
+	/*top: 37%;
+	left: 1%;
+	position: fixed;
+	margin-top: 250px;
+	*/
+}
+
+#proceedButton{
+	font-size: 1.7em;
+	border: 3px solid #fff;
+	border-radius: 8px;
+	background: transparent;
+	padding: 10px 30px;
+	color: #fff;
+	margin-top: 150px;
+	/*top: 70%;
+	left: 25%;
+	position: fixed;*/
+}
+
+.mainpage{
+	background: url("../images/menubg.jpg") no-repeat center center #fff / cover;
+}
+
+#hardwareinfotd {
+	color:#fff;
+	background: #e24242;
+	padding: 5px;
+	border-bottom: 30px solid #d13a3a;
+	width: 50%;
+	margin: 50px;
+}
+
+#listofproblemtd {
+	color:#fff;
+	background: #2686d5;
+	padding: 20px;
+	border-bottom: 30px solid #2783ce;
+	width: 50%;
+}
+
+#symptomstd {
+	color:#fff;
+	background: #a163e4;
+	padding: 20px;
+	border-bottom: 30px solid #955cd3;
+	width: 50%;
+}
+#tipstd {
+	color:#fff;
+	background: #34b18b;
+	padding: 20px;
+	border-bottom: 30px solid #31a481;
+	width: 50%;
+}
+#videostd {
+	color:#fff;
+	background: #ed7e42;
+	padding: 20px;
+	border-bottom: 30px solid #db7544;
+	width: 50%;
+}
+#abouttd {
+	color:#fff;
+	background: #b2b637;
+	padding: 20px;
+	border-bottom: 30px solid #a5a934;
+	width: 50%;
+}
+
+.navbar .center{
+	color: #000;
+	font-size: 1em;
+}
+
+.navbar .fa{
+	font-size: 1.2em;
+	color: #000;
+} 
+
+.back, .toolbar a.link{
+	z-index:9999;
+	color: #fff;
+	padding: 0px 10px;
+	background: #48b04d;
+	border: 2px solid #0f0f0f;
+	border-radius: 5px;
+	line-height: 20px;
+	height: 20px;
+}
+.toolbar a .fa{
+	line-height: 22px;
+	/*height: 47px;*/
+}
+
+.page-content{
+	padding-top: 16px !important;
+	background: #fff;
+}
+
+.content-block h3 {
+	text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.panel-left{
+	background: #003333;
+}
+
+.panel-left ul{
+	margin: 0px;
+	padding: 0px;
+}
+
+.panel-left ul li a{
+	color: #fff;
+	font-size: 1.3em;
+}
+
+.panel-left .fa{
+	color: #fff;
+	display: none;
+}
+
+.panel-left li{
+	color: #fff;
+	display: block;
+}

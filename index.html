@@ -20,7 +20,15 @@
     <!-- Left panel with reveal effect-->
     <div class="panel panel-left panel-reveal">
       <div class="content-block">
-        <p>Left panel content goes here</p>
+	  <h3 style="font-size: 2em; color:#fff;">ISAAC :</h3>
+	  <ul style="list-style:none; color:#fff;">
+		<li><a href="#" id="hardwareinfo" onclick="mainHardwareInfo();"><span class="fa fa-desktop"></span><br/><span>Hardware Information</span></a></li>
+		<li><a href="#" id="listofproblem" onclick="mainListOfProblem();"><span class="fa fa-list-ol"></span><br/><span>List of Problem</span></a></li>
+		<li><a href="#" id="symptoms" onclick="mainSymptoms();"><span class="fa fa-stethoscope"></span><br/><span>Symptoms</span></a></li>
+		<li><a href="#" id="tips" onclick="mainTips();"><span class="fa fa-lightbulb-o"></span><br/><span>Tips</span></a></li>
+		<li><a href="#" id="videos" onclick="mainVideos();"><span class="fa fa-film"></span><br/><span>Videos</span></a></li>
+		<li><a href="#" id="about" onclick="mainAbout();"><span class="fa fa-user-circle-o"></span><br/><span>About</span></a></li>
+	  </ul>
       </div>
     </div>
     <!-- Right panel with cover effect-->
@@ -33,19 +41,33 @@
     <div class="views">
       <!-- Your main view, should have "view-main" class-->
       <div class="view view-main">
+		<div id="splash">
+			<center>
+				<!--<img src="images/isaaclogo2.png" style="margin-top:35%; width:200px;"/><br/>
+				<img src="images/loading.gif" />-->
+				<div id="title">ISAAC</div>
+				<br/>
+				<div id="subtitle">
+				Instructional Solution and Assitance for Computers
+				</div>
+				<br/><br/><br/><br/><br/><br/><br/>
+				<a href="#" id="proceedButton" class="link" onclick="hideSplash();">Proceed</a>
+			</center>
+		</div>
         <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
         <div class="pages navbar-fixed toolbar-through">
           <!-- Index Page-->
-          <div data-page="index" class="page ">
+          <div data-page="index" class="page mainpage">
+			
 			<!-- Top Navbar-->
-			<div class="navbar">
-			  <div class="navbar-inner">
+			<div class="navbar" style="background: transparent; margin-top:30px;">
+			  <div class="navbar-inner" style="background: transparent; border:none;">
 				<div class="left"></div>
-				<div class="center sliding">ISAAC</div>
-				<div class="right"><a href="#" id="updateButton" class="link icon-only" onclick="updateLocalDB();"> <i class="fa fa-download"></i></a></div>
+				<div class="center sliding"><span style="font-size: 2.5em; font-weight: bold; color:#fff;">ISAAC</span></div>
+				<div class="right"><a href="#" id="updateButton" class="link icon-only" onclick="updateLocalDB();"> <i class="fa fa-download" style="color:#fff;"></i></a></div>
 			  </div>
 			</div>
-		  <!-- Search Bar -->
+		  <!-- Search Bar
 			<form class="searchbar">
 				<div class="searchbar-input">
 					<input type="search" placeholder="Search">
@@ -53,38 +75,34 @@
 				</div>
 				<a href="#" class="searchbar-cancel">Cancel</a>
 			</form>
-			
-			<!-- Search Bar overlay-->
-			<div class="searchbar-overlay"></div>
+			 -->
+			<!-- Search Bar overlay
+			<div class="searchbar-overlay"></div>-->
 	
-            <div class="page-content">
+            <div class="page-content" style="padding-top:50px !important; background: none;">
 				<div class="content-block searchbar-not-found">
 					Nothing found
 				</div>	
-              <div class="content-block mainpage" style="height:95%; margin:0px;">
-                <div class="content-block-inner" style="height:100%;">
-                  <table style="margin:auto; height:100%; width: 100%; text-align:center;">
+              <div class="content-block" style="margin:30px 0px;">
+                <div class="content-block-inner" style="background: none;">
+                  <table style="margin:auto; height:auto; width: auto; font-size:1.5em; text-align:center;">
 					<tr>
-						<td><a href="#" id="hardwareinfo" onclick="mainHardwareInfo();"><span class="fa fa-desktop"></span><br/><br/><span class="fs">Hardware Information</span></a></td>
-						<td><a href="#" id="listofproblem" onclick="mainListOfProblem();"><span class="fa fa-list-ol"></span><br/><br/><span class="fs">List of Problem</span></a></td>
+						<td id="hardwareinfotd"><a href="#" id="hardwareinfo" onclick="mainHardwareInfo();"><span class="fa fa-desktop"></span><br/><span>Hardware Information</span></a></td>
+						<td id="listofproblemtd"><a href="#" id="listofproblem" onclick="mainListOfProblem();"><span class="fa fa-list-ol"></span><br/><span>List of Problem</span></a></td>
 					</tr>
 					<tr>
-						<td><a href="#" id="symptoms" onclick="mainSymptoms();"><span class="fa fa-stethoscope"></span><br/><br/><span class="fs">Symptoms</span></a></td>
-						<td><a href="#" id="tips" onclick="mainTips();"><span class="fa fa-lightbulb-o"></span><br/><br/><span class="fs">Tips</span></a></td>
+						<td id="symptomstd"><a href="#" id="symptoms" onclick="mainSymptoms();"><span class="fa fa-stethoscope"></span><br/><span>Symptoms</span></a></td>
+						<td id="tipstd"><a href="#" id="tips" onclick="mainTips();"><span class="fa fa-lightbulb-o"></span><br/><span>Tips</span></a></td>
 					</tr>
 					<tr>
-						<td><a href="#" id="videos" onclick="mainVideos();"><span class="fa fa-film"></span><br/><br/><span class="fs">Videos</span></a></td>
-						<td><a href="#" id="about" onclick="mainAbout();"><span class="fa fa-user-circle-o"></span><br/><br/><span class="fs">About</span></a></td>
+						<td id="videostd"><a href="#" id="videos" onclick="mainVideos();"><span class="fa fa-film"></span><br/><span>Videos</span></a></td>
+						<td id="abouttd"><a href="#" id="about" onclick="mainAbout();"><span class="fa fa-user-circle-o"></span><br/><span>About</span></a></td>
 					</tr>
 				  </table>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Bottom Toolbar-->
-        <div class="toolbar">
-          <div class="toolbar-inner"></div>
         </div>
       </div>
     </div>

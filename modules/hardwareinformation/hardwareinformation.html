@@ -3,17 +3,25 @@
   <div data-page="hardwareinformation" class="page">
 	<div class="navbar">
 	  <div class="navbar-inner">
-		<div class="left sliding"><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a></div>
-		<div class="center sliding">ISAAC</div>
-		<div class="right sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+		<div class="left sliding"><a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a></div>
+		<div class="center sliding">Hardware Information</div>
 	  </div>
 	</div>
-    <div class="page-content">
-      <div class="content-block-title">Hardware Information</div>
+	 <!-- Search Bar -->
+	<form class="searchbar">
+		<div class="searchbar-input">
+			<input type="search" placeholder="Search">
+			<a href="#" class="searchbar-clear"></a>
+		</div>
+		<a href="#" class="searchbar-cancel">Cancel</a>
+	</form>
+	<!-- Search Bar overlay-->
+	<div class="searchbar-overlay"></div>
+    <div class="page-content" style="padding-top:53px !important;">
       <div class="list-block">
-        <ul>{{#each hardwareinformation}}
+        <ul style="background: #878787;">{{#each hardwareinformation}}
           <li>
-            <a id={{TopicID}} href="#" class="item-content item-link" onclick='hardwareinfodetail(this)'>
+            <a id={{TopicID}} href="#" class="item-content item-link" onclick='hardwareinfodetail(this)' style="color:#fff;">
               <div class="item-inner">
                 <div class="item-title">{{Title}}</div>
               </div>
@@ -22,5 +30,12 @@
         </ul>
       </div>
     </div>
+	<!-- Bottom Toolbar-->
+	<div class="toolbar">
+	  <div class="toolbar-inner">
+		 <a href="#" class="back link"><i class="fa fa-caret-left"></i><i class="fa fa-caret-left"></i><span>Back</span></a>
+	  </div>
+	</div>
   </div>
+  
 </div>

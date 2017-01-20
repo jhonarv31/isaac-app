@@ -5,11 +5,16 @@ Template7.registerHelper('json_stringify', function (context) {
 
 // Export selectors engine
 var $$ = Dom7;
-var SERVER_ADDRESS = "http://192.168.254.103:8080/isaac";
+var SERVER_ADDRESS = "http://10.1.1.3:8080/isaac";
 
+function hideSplash(){
+	document.getElementById("splash").style.display="none";
+}
 						
 $$(document).on('pageInit', function (e) {
-	//alert('LOADING DB');
+	
+	//setTimeout(function(){
+	//},1000);
     /*CHECK PROGRAM COMPATIBILITY TO INDEXED DB*/
 	window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 	// DON'T use "var indexedDB = ..." if you're not in a function.
@@ -69,6 +74,9 @@ $$(document).on('pageInit', function (e) {
 		  }
 		};
 	}*/
+	
+	//window.setTimeout(window.location.href = "https://www.google.co.in",5000);
+	//alert(e);
 	
 });
 
@@ -130,6 +138,8 @@ function mainHardwareInfo(){
 	}
 }
 
+
+
 function hardwareinfodetail(obj){
 	var id = obj.id; 
 	var request = window.indexedDB.open("isaac", 1);
@@ -147,6 +157,10 @@ function hardwareinfodetail(obj){
 				hwiData.TopicID = cursor.value.TopicID;
 				hwiData.Title = cursor.value.Title;
 				hwiData.Contents = cursor.value.Contents;
+				hwiData.ImageBlob = cursor.value.ImageBlob;
+				if(cursor.value.ImageBlob){
+					hwiData.ImageBlobDisplay = '<img alt="image" src="data:image/jpeg;base64,'+cursor.value.ImageBlob+'"/>'	
+				}
 				//hwiArray.push(hwiData2);
 				//hwiData.hardwareinformation = hwiArray;
 				mainView.router.load({url:'modules/hardwareinformation/hardwareinformationdetail.html',context:hwiData});	
@@ -247,22 +261,19 @@ function mainSymptoms(){
 		objectStore.openCursor().onsuccess = function(event) {
 		  var cursor = event.target.result;	
 		  if (cursor) {
-			  for(var i=0; i<999; i++){
-				if(cursor.value.IsHead==i){
-					var sympData2 = new Object();
-					sympData2.StepID = cursor.value.StepID;
-					sympData2.SymptomDesc = cursor.value.SymptomDesc;
-					sympData2.StepDesc = cursor.value.StepDesc;
-					sympData2.YesStepID = cursor.value.YesStepID;
-					sympData2.YesStepText = cursor.value.YesStepText;
-					sympData2.NoStepID = cursor.value.NoStepID;
-					sympData2.NoStepText = cursor.value.NoStepText;
-					sympData2.IsHead = cursor.value.IsHead;
-					sympData2.IsLeaf = cursor.value.IsLeaf;
-					sympArray.push(sympData2);  
-				}	
-			  }
-			  		
+			  if(cursor.value.IsHead=="1"){
+				var sympData2 = new Object();
+				sympData2.StepID = cursor.value.StepID;
+				sympData2.SymptomDesc = cursor.value.SymptomDesc;
+				sympData2.StepDesc = cursor.value.StepDesc;
+				sympData2.YesStepID = cursor.value.YesStepID;
+				sympData2.YesStepText = cursor.value.YesStepText;
+				sympData2.NoStepID = cursor.value.NoStepID;
+				sympData2.NoStepText = cursor.value.NoStepText;
+				sympData2.IsHead = cursor.value.IsHead;
+				sympData2.IsLeaf = cursor.value.IsLeaf;
+				sympArray.push(sympData2);  
+			  }			
 			//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
 			//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
 			cursor.continue();
@@ -299,7 +310,8 @@ function symptomsdetail(obj){
 				sympData.NoStepText = cursor.value.NoStepText;
 				sympData.IsHead = cursor.value.IsHead;
 				sympData.IsLeaf = cursor.value.IsLeaf;
-				mainView.router.load({url:'modules/symptoms/symptomsdetail.html',context:sympData});	
+				mainView.router.load({url:'modules/symptoms/symptomsdetail.html',context:sympData});
+				
 			}  
 			cursor.continue();
 		  }
@@ -310,6 +322,29 @@ function symptomsdetail(obj){
 		  }
 		};
 	}
+}
+
+
+myApp.onPageAfterAnimation("symptomsdetail", function(page){
+	var yes = $$(".symptomsButton1")[$$(".symptomsButton1").length-1];
+	var yesText = yes.text;
+	if(yesText==""){
+		yes.style.display = "none";
+	}else{
+		yes.style.display = "inline";
+	}
+	var no = $$(".symptomsButton2")[$$(".symptomsButton2").length-1];
+	var noText = no.text;
+	if(noText==""){
+		no.style.display = "none";
+	}else{
+		no.style.display = "inline";
+	}
+	
+}); 
+
+function checkMe(check){
+	alert('pst!');
 }
 
 function mainTips(){
@@ -379,7 +414,98 @@ function tipsdetail(obj){
 }
 
 function mainVideos(){
-	mainView.router.loadPage('modules/videos/videos.html');
+	//mainView.router.loadPage('modules/videos/videos.html');
+	var request = window.indexedDB.open("isaac", 1);
+	var videoArray2 = [];
+	request.onsuccess = function(e) {
+		var db = this.result;
+		var objectStore = db.transaction("gentable").objectStore("gentable");
+		var videoData = new Object();
+		var videoArray = [];
+		
+		objectStore.openCursor().onsuccess = function(event) {
+		  var cursor = event.target.result;
+		  console.log(cursor);
+		  if (cursor) {
+			var videoData2 = new Object();
+			videoData2.TopicID = cursor.value.TopicID;
+			videoData2.Title = cursor.value.Title;
+			videoData2.Contents = cursor.value.Contents;
+			videoData2.PageType = cursor.value.PageType;
+			var videoData3 = new Object();
+			videoData3.html ="<iframe src="+cursor.value.Contents.replace("watch?v=", "v/")+" frameborder='0' allowfullscreen></iframe>";
+			videoData3.caption = cursor.value.Title;
+			if(videoData2.PageType=='VIDEOS'){
+				videoArray.push(videoData2);
+				videoArray2.push(videoData3);
+			}
+			//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
+			//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
+			cursor.continue();
+		  }
+		  else {
+			//alert("No more entries!");
+			videoData.videos = videoArray;
+			console.log(videoData);
+				var myPhotoBrowserPopupDark = myApp.photoBrowser({
+				photos : videoArray2,
+				/*photos: [{
+					html: '<iframe src="//www.youtube.com/embed/lmc21V-zBq0?list=PLpj0FBQgLGEr3mtZ5BTwtmSwF1dkPrPRM" frameborder="0" allowfullscreen></iframe>',
+					caption: 'Woodkid - Run Boy Run (Official HD Video)'
+				},
+				{
+					url: 'http://lorempixel.com/1024/1024/sports/2/',
+					caption: 'Second Caption Text'
+				},
+				{
+					url: 'http://lorempixel.com/1024/1024/sports/3/'
+				}],*/
+				theme: 'dark',
+				type: 'standalone'
+				});
+				//$$('.pb-standalone-video').on('click', function () {
+					myPhotoBrowserPopupDark.open();
+				//});
+			//mainView.router.load({url:'modules/videos/videos.html',context:videoData});
+		  }
+		};
+	}
+
+	
+	
+}
+
+function videosdetail(obj){
+	alert("hey!");
+	var idVideos = obj.id; 
+	var requestVideos = window.indexedDB.open("isaac", 1);
+	requestVideos.onsuccess = function(e) {
+		var dbVideos = this.result;
+		var objectStoreVideos = dbVideos.transaction("gentable").objectStore("gentable");
+		var VideosData = new Object();
+		///var hwiArray = [];
+		
+		objectStoreVideos.openCursor().onsuccess = function(event) {
+		  var cursorVideos = event.target.result;
+		  if (cursorVideos) {
+			if(cursorVideos.value.TopicID==idVideos){
+				var VideosData = new Object();
+				VideosData.TopicID = cursorVideos.value.TopicID;
+				VideosData.Title = cursorVideos.value.Title;
+				VideosData.Contents = cursorVideos.value.Contents;
+				//hwiArray.push(hwiData2);
+				//hwiData.hardwareinformation = hwiArray;
+				mainView.router.load({url:'modules/videos/videosdetail.html',context:VideosData});	
+			}  
+			cursorVideos.continue();
+		  }
+		  else {
+			//alert("No more entries!");
+			//hwiData.hardwareinformation = hwiArray;
+			mainView.router.load({url:'modules/videos/videosdetail.html',context:VideosData});
+		  }
+		};
+	}
 }
 
 function updateLocalDB(){
@@ -406,7 +532,7 @@ function updateLocalDB(){
 				
 					var rec = dataArr[i];
 					
-					var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
+					var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents, ImageBlob: rec.ImageBlob});
 				
 					resultSet.onsuccess = function(event) {
 						console.log('added');
@@ -463,3 +589,8 @@ function updateLocalDB(){
 		}
 	});
 }
+
+function backMeUp(){
+	mainView.router.back();
+}
+

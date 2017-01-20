@@ -2,9 +2,8 @@
   <div data-page="symptomsdetail" class="page">
 	<div class="navbar">
 	  <div class="navbar-inner">
-		<div class="left sliding"><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a></div>
+		<div class="left sliding"><a href="#" class="link icon-only open-panel"> <i class="fa fa-bars"></i></a></div>
 		<div class="center sliding">ISAAC</div>
-		<div class="right sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
 	  </div>
 	</div>
     <div class="page-content">
@@ -12,13 +11,20 @@
         <div class="content-block-inner">
           <h3>{{SymptomDesc}}</h3>
 		  <h5>{{StepDesc}}</h5>
-          <ul style="list-style:none;">
-			<li><a id={{YesStepID}} href="#" class="fa item-content item-link" onclick='symptomsdetail(this)'>{{YesStepText}}</a></li>
-			<br/>
-		  	<li><a id={{NoStepID}} href="#" class="fa item-content item-link" onclick='symptomsdetail(this)'>{{NoStepText}}</a></li>
+          <ul class="symptomsList" style="list-style:none; display:inline-block; width:100%;">
+			<div id="checkMe">
+				<li><a id={{YesStepID}} href="#" class="item-content item-link symptomsButton1" onclick='symptomsdetail(this)' onload='checkMe(this)'>{{YesStepText}}</a></li>
+				<li><a id={{NoStepID}} href="#" class="item-content item-link symptomsButton2" onclick='symptomsdetail(this)'>{{NoStepText}}</a></li>
+			</div>
 		  </ul>
         </div>
       </div>
     </div>
+	<!-- Bottom Toolbar-->
+	<div class="toolbar">
+	  <div class="toolbar-inner">
+		 <a href="#" class="back link"><i class="fa fa-caret-left"></i><i class="fa fa-caret-left"></i><span>Back</span></a>
+	  </div>
+	</div>
   </div>
 </div>
