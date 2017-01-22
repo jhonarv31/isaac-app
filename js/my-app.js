@@ -261,8 +261,7 @@ function mainSymptoms(){
 		objectStore.openCursor().onsuccess = function(event) {
 		  var cursor = event.target.result;	
 		  if (cursor) {
-			  for(var j=0; j<9999999999; j++){
-				if(cursor.value.IsHead==j){
+			  if(cursor.value.IsHead=="1"){
 					var sympData2 = new Object();
 					sympData2.StepID = cursor.value.StepID;
 					sympData2.SymptomDesc = cursor.value.SymptomDesc;
@@ -275,8 +274,45 @@ function mainSymptoms(){
 					sympData2.IsLeaf = cursor.value.IsLeaf;
 					sympArray.push(sympData2);  
 				}
-			  }
-			  		
+				else if(cursor.value.IsHead=="9"){
+					var sympData2 = new Object();
+					sympData2.StepID = cursor.value.StepID;
+					sympData2.SymptomDesc = cursor.value.SymptomDesc;
+					sympData2.StepDesc = cursor.value.StepDesc;
+					sympData2.YesStepID = cursor.value.YesStepID;
+					sympData2.YesStepText = cursor.value.YesStepText;
+					sympData2.NoStepID = cursor.value.NoStepID;
+					sympData2.NoStepText = cursor.value.NoStepText;
+					sympData2.IsHead = cursor.value.IsHead;
+					sympData2.IsLeaf = cursor.value.IsLeaf;
+					sympArray.push(sympData2);  
+				} 
+				else if(cursor.value.IsHead=="79"){
+					var sympData2 = new Object();
+					sympData2.StepID = cursor.value.StepID;
+					sympData2.SymptomDesc = cursor.value.SymptomDesc;
+					sympData2.StepDesc = cursor.value.StepDesc;
+					sympData2.YesStepID = cursor.value.YesStepID;
+					sympData2.YesStepText = cursor.value.YesStepText;
+					sympData2.NoStepID = cursor.value.NoStepID;
+					sympData2.NoStepText = cursor.value.NoStepText;
+					sympData2.IsHead = cursor.value.IsHead;
+					sympData2.IsLeaf = cursor.value.IsLeaf;
+					sympArray.push(sympData2);  
+				} 
+				else if(cursor.value.IsHead=="113"){
+					var sympData2 = new Object();
+					sympData2.StepID = cursor.value.StepID;
+					sympData2.SymptomDesc = cursor.value.SymptomDesc;
+					sympData2.StepDesc = cursor.value.StepDesc;
+					sympData2.YesStepID = cursor.value.YesStepID;
+					sympData2.YesStepText = cursor.value.YesStepText;
+					sympData2.NoStepID = cursor.value.NoStepID;
+					sympData2.NoStepText = cursor.value.NoStepText;
+					sympData2.IsHead = cursor.value.IsHead;
+					sympData2.IsLeaf = cursor.value.IsLeaf;
+					sympArray.push(sympData2);  
+				} 
 			//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
 			//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
 			cursor.continue();
