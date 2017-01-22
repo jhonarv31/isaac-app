@@ -251,3 +251,18 @@ i.tabbar-demo-icon-4 {
 	color: #fff;
 	display: block;
 }
+@media (max-width: 320px) {
+  .imageBlob {
+    margin: 10px;
+  }
+}
+@media (max-width: 375px) {
+  .imageBlob {
+    margin: 10px;
+  }
+}
+@media (max-width: 414px) {
+  .imageBlob {
+    margin: 10px;
+  }
+}
