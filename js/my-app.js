@@ -159,7 +159,7 @@ function hardwareinfodetail(obj){
 				hwiData.Contents = cursor.value.Contents;
 				hwiData.ImageBlob = cursor.value.ImageBlob;
 				if(cursor.value.ImageBlob){
-					hwiData.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursor.value.ImageBlob+'" style="height:200px; width:200px;"/></center>'	
+					hwiData.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursor.value.ImageBlob+'"/></center>'	
 				}
 				//hwiArray.push(hwiData2);
 				//hwiData.hardwareinformation = hwiArray;
