@@ -5,7 +5,7 @@ Template7.registerHelper('json_stringify', function (context) {
 
 // Export selectors engine
 var $$ = Dom7;
-var SERVER_ADDRESS = "http://192.168.254.103:8080/isaac";
+var SERVER_ADDRESS = "http://10.1.1.3:8080/isaac";
 
 function hideSplash(){
 	document.getElementById("splash").style.display="none";
@@ -262,57 +262,18 @@ function mainSymptoms(){
 		  var cursor = event.target.result;	
 		  if (cursor) {
 			  if(cursor.value.IsHead=="1"){
-					var sympData2 = new Object();
-					sympData2.StepID = cursor.value.StepID;
-					sympData2.SymptomDesc = cursor.value.SymptomDesc;
-					sympData2.StepDesc = cursor.value.StepDesc;
-					sympData2.YesStepID = cursor.value.YesStepID;
-					sympData2.YesStepText = cursor.value.YesStepText;
-					sympData2.NoStepID = cursor.value.NoStepID;
-					sympData2.NoStepText = cursor.value.NoStepText;
-					sympData2.IsHead = cursor.value.IsHead;
-					sympData2.IsLeaf = cursor.value.IsLeaf;
-					sympArray.push(sympData2);  
-				}
-				else if(cursor.value.IsHead=="9"){
-					var sympData2 = new Object();
-					sympData2.StepID = cursor.value.StepID;
-					sympData2.SymptomDesc = cursor.value.SymptomDesc;
-					sympData2.StepDesc = cursor.value.StepDesc;
-					sympData2.YesStepID = cursor.value.YesStepID;
-					sympData2.YesStepText = cursor.value.YesStepText;
-					sympData2.NoStepID = cursor.value.NoStepID;
-					sympData2.NoStepText = cursor.value.NoStepText;
-					sympData2.IsHead = cursor.value.IsHead;
-					sympData2.IsLeaf = cursor.value.IsLeaf;
-					sympArray.push(sympData2);  
-				} 
-				else if(cursor.value.IsHead=="79"){
-					var sympData2 = new Object();
-					sympData2.StepID = cursor.value.StepID;
-					sympData2.SymptomDesc = cursor.value.SymptomDesc;
-					sympData2.StepDesc = cursor.value.StepDesc;
-					sympData2.YesStepID = cursor.value.YesStepID;
-					sympData2.YesStepText = cursor.value.YesStepText;
-					sympData2.NoStepID = cursor.value.NoStepID;
-					sympData2.NoStepText = cursor.value.NoStepText;
-					sympData2.IsHead = cursor.value.IsHead;
-					sympData2.IsLeaf = cursor.value.IsLeaf;
-					sympArray.push(sympData2);  
-				} 
-				else if(cursor.value.IsHead=="113"){
-					var sympData2 = new Object();
-					sympData2.StepID = cursor.value.StepID;
-					sympData2.SymptomDesc = cursor.value.SymptomDesc;
-					sympData2.StepDesc = cursor.value.StepDesc;
-					sympData2.YesStepID = cursor.value.YesStepID;
-					sympData2.YesStepText = cursor.value.YesStepText;
-					sympData2.NoStepID = cursor.value.NoStepID;
-					sympData2.NoStepText = cursor.value.NoStepText;
-					sympData2.IsHead = cursor.value.IsHead;
-					sympData2.IsLeaf = cursor.value.IsLeaf;
-					sympArray.push(sympData2);  
-				} 
+				var sympData2 = new Object();
+				sympData2.StepID = cursor.value.StepID;
+				sympData2.SymptomDesc = cursor.value.SymptomDesc;
+				sympData2.StepDesc = cursor.value.StepDesc;
+				sympData2.YesStepID = cursor.value.YesStepID;
+				sympData2.YesStepText = cursor.value.YesStepText;
+				sympData2.NoStepID = cursor.value.NoStepID;
+				sympData2.NoStepText = cursor.value.NoStepText;
+				sympData2.IsHead = cursor.value.IsHead;
+				sympData2.IsLeaf = cursor.value.IsLeaf;
+				sympArray.push(sympData2);  
+			  }			
 			//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
 			//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
 			cursor.continue();
