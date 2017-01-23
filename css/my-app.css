@@ -74,7 +74,11 @@ i.tabbar-demo-icon-4 {
 	height:100%;
 	width:100%;
 	z-index:999;
-	background: url("../images/splashbg.jpg") no-repeat center center #fff / cover;
+	background: url("../images/splashbg.jpg") no-repeat center center #fff / cover fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .symptomsButton1{
