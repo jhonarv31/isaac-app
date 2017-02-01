@@ -4,18 +4,23 @@
 	<div class="navbar">
 	  <div class="navbar-inner">
 		<div class="left sliding"><a href="#" class="link icon-only open-panel"> <i class="fa fa-bars"></i></a></div>
-		<div class="center sliding">List of Problem</div>
+		<div class="center sliding">List of Basic Problem</div>
 	  </div>
 	</div>
     <div class="page-content">
-      <div class="list-block">
+      <div class="list-block  accordion-list">
         <ul>{{#each listofproblem}}
-          <li>
-            <a id={{TopicID}} href="#" class="item-content item-link" onclick='listofproblemdetail(this)'>
+          <li class="accordion-item">
+            <a id={{TopicID}} href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'><!--onclick='listofproblemdetail(this)' -->
               <div class="item-inner">
                 <div class="item-title">{{Title}}</div>
               </div>
             </a>
+			<div class="accordion-item-content">
+				<div class="content-block">
+				  <p>{{Contents}}</p>
+				</div>
+			</div>
           </li>{{/each}}
         </ul>
       </div>

@@ -74,11 +74,7 @@ i.tabbar-demo-icon-4 {
 	height:100%;
 	width:100%;
 	z-index:999;
-	background: url("../images/splashbg.jpg") no-repeat center center #fff / cover fixed;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+	background: url("../images/splashbg.jpg") no-repeat center center #fff / cover;
 }
 
 .symptomsButton1{
@@ -255,18 +251,7 @@ i.tabbar-demo-icon-4 {
 	color: #fff;
 	display: block;
 }
-@media (max-width: 320px) {
-  .imageBlob {
-    margin: 10px;
-  }
-}
-@media (max-width: 375px) {
-  .imageBlob {
-    margin: 10px;
-  }
-}
-@media (max-width: 414px) {
-  .imageBlob {
-    margin: 10px;
-  }
+
+.photo-browser-swiper-wrapper{
+	height: 85%;
 }

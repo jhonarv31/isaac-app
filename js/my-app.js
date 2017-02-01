@@ -5,7 +5,7 @@ Template7.registerHelper('json_stringify', function (context) {
 
 // Export selectors engine
 var $$ = Dom7;
-var SERVER_ADDRESS = "http://192.168.254.103:8080/isaac";
+var SERVER_ADDRESS = "http://10.1.1.3:8080/isaac";
 
 function hideSplash(){
 	document.getElementById("splash").style.display="none";
@@ -121,7 +121,12 @@ function mainHardwareInfo(){
 			hwiData2.Title = cursor.value.Title;
 			hwiData2.Contents = cursor.value.Contents;
 			hwiData2.PageType = cursor.value.PageType;
+				
 			if(hwiData2.PageType=='HARDWAREINFO'){
+				hwiData2.ImageBlob = cursor.value.ImageBlob;
+				if(cursor.value.ImageBlob){
+					hwiData2.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursor.value.ImageBlob+'" style="height:200px; width:200px;"/></center>'	
+				}
 				hwiArray.push(hwiData2);
 			}
 			//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
@@ -138,7 +143,11 @@ function mainHardwareInfo(){
 	}
 }
 
-
+function hardwareinfodetail1(obj){
+	var id= obj.id;
+	var searchMe = '#'+id;
+	$$(searchMe).parents("li").toggleClass("accordion-item-expanded");	
+}
 
 function hardwareinfodetail(obj){
 	var id = obj.id; 
@@ -159,7 +168,7 @@ function hardwareinfodetail(obj){
 				hwiData.Contents = cursor.value.Contents;
 				hwiData.ImageBlob = cursor.value.ImageBlob;
 				if(cursor.value.ImageBlob){
-					hwiData.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursor.value.ImageBlob+'"/></center>'	
+					hwiData.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursor.value.ImageBlob+'" style="height:200px; width:200px;"/></center>'	
 				}
 				//hwiArray.push(hwiData2);
 				//hwiData.hardwareinformation = hwiArray;
@@ -214,6 +223,11 @@ function mainListOfProblem(){
 		  }
 		};
 	}
+}
+function listofproblemdetail1(obj){
+	var id= obj.id;
+	var searchMe = '#'+id;
+	$$(searchMe).parents("li").toggleClass("accordion-item-expanded");	
 }
 
 function listofproblemdetail(obj){
@@ -433,7 +447,7 @@ function mainVideos(){
 			videoData2.Contents = cursor.value.Contents;
 			videoData2.PageType = cursor.value.PageType;
 			var videoData3 = new Object();
-			videoData3.html ="<iframe src="+cursor.value.Contents.replace("watch?v=", "v/")+" frameborder='0' allowfullscreen></iframe>";
+			videoData3.html ="<iframe src="+cursor.value.Contents.replace("watch?v=", "embed/")+" frameborder='0'></iframe>";
 			videoData3.caption = cursor.value.Title;
 			if(videoData2.PageType=='VIDEOS'){
 				videoArray.push(videoData2);
@@ -450,7 +464,7 @@ function mainVideos(){
 				var myPhotoBrowserPopupDark = myApp.photoBrowser({
 				photos : videoArray2,
 				/*photos: [{
-					html: '<iframe src="//www.youtube.com/embed/lmc21V-zBq0?list=PLpj0FBQgLGEr3mtZ5BTwtmSwF1dkPrPRM" frameborder="0" allowfullscreen></iframe>',
+					html: '<iframe src="//www.youtube.com/embed/lmc21V-zBq0?list=PLpj0FBQgLGEr3mtZ5BTwtmSwF1dkPrPRM" frameborder="0"></iframe>',
 					caption: 'Woodkid - Run Boy Run (Official HD Video)'
 				},
 				{
