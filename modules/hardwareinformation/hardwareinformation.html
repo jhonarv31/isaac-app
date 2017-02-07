@@ -18,25 +18,21 @@
 	<!-- Search Bar overlay
 	<div class="searchbar-overlay"></div>-->
     <div class="page-content"><!--style="padding-top:53px !important;"-->
-      <div class="list-block accordion-list">
+      <div class="list-block">
         <ul style="background: #878787;">{{#each hardwareinformation}}
-          <li class="accordion-item">
-            <a id={{TopicID}} href="#" class="item-content item-link" onclick='hardwareinfodetail1(this)' style="color:#fff;"><!--onclick='hardwareinfodetail(this)'-->
+          <li>
+            <a id={{TopicID}} href="#" class="item-content item-link" onclick='hardwareinfodetail(this)' style="color:#fff;"><!--onclick='hardwareinfodetail(this)'-->
               <div class="item-inner">
                 <div class="item-title">{{Title}}</div>
               </div>
             </a>
-			<div class="accordion-item-content">
+			<!--<div class="accordion-item-content">
 				<div class="content-block">
 					<div class="content-block-inner">
-<h3>{{Title}}</h3>
-{{ImageBlobDisplay}}
-<p style="padding:10px; text-align:justify; white-space:pre-wrap;">
-{{Contents}}
-</p>
+
 					</div>
 				</div>
-			</div>
+			</div>-->
           </li>{{/each}}
         </ul>
       </div>

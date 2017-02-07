@@ -9,12 +9,40 @@
     <div class="page-content">
       <div class="content-block">
 		<h3>{{Title}}</h3>
-        <div class="content-block-inner" style="white-space:pre-wrap;">
+		<div class="content-block-inner">
 		  {{ImageBlobDisplay}}
-		  <br/>
-          <p>
-		  {{Contents}}
-		  </p>
+		  <div class="list-block accordion-list">
+			<ul style="background: #878787;">
+				<li class="accordion-item">
+					<a id='{{TopicID}}_Description' href="#" class="item-content item-link" onclick='hardwareinfodetail1(this)' style="color:#fff;">
+						<div class="item-inner">
+							<div class="item-title">Description</div>
+						</div>
+					</a>
+					<div class="accordion-item-content">
+						<div class="content-block">
+<p style="padding:10px; text-align:justify; white-space:pre-wrap; text-indent:10px; color:#fff;">
+{{Contents}}
+</p>
+						</div>
+					</div>
+				</li>
+				<li class="accordion-item">
+					<a id='{{TopicID}}_Specifications' href="#" class="item-content item-link" onclick='hardwareinfodetail1(this)' style="color:#fff;">
+						<div class="item-inner">
+							<div class="item-title">Specifications</div>
+						</div>
+					</a>
+					<div class="accordion-item-content">
+						<div class="content-block">
+<p style="padding:10px; text-align:justify; white-space:pre-wrap; color:#fff;">
+{{Contents2}}
+</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		  </div>
 		</div>
       </div>
     </div>

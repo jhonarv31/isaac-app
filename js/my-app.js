@@ -5,7 +5,7 @@ Template7.registerHelper('json_stringify', function (context) {
 
 // Export selectors engine
 var $$ = Dom7;
-var SERVER_ADDRESS = "http://192.168.1.6:8080/isaac";
+var SERVER_ADDRESS = "http://192.168.1.11:8080/isaac";
 
 function hideSplash(){
 	document.getElementById("splash").style.display="none";
@@ -36,6 +36,9 @@ $$(document).on('pageInit', function (e) {
 		}
 		if(!thisDB.objectStoreNames.contains("symptoms")) {
 			thisDB.createObjectStore("symptoms", { keyPath: "StepID" });
+		}
+		if(!thisDB.objectStoreNames.contains("gentabledetails")) {
+			thisDB.createObjectStore("gentabledetails", { keyPath: "SeqID" });
 		}
 	}
 	
@@ -120,6 +123,7 @@ function mainHardwareInfo(){
 			hwiData2.TopicID = cursor.value.TopicID;
 			hwiData2.Title = cursor.value.Title;
 			hwiData2.Contents = cursor.value.Contents;
+			hwiData2.Contents2 = cursor.value.Contents2;
 			hwiData2.PageType = cursor.value.PageType;
 				
 			if(hwiData2.PageType=='HARDWAREINFO'){
@@ -166,6 +170,7 @@ function hardwareinfodetail(obj){
 				hwiData.TopicID = cursor.value.TopicID;
 				hwiData.Title = cursor.value.Title;
 				hwiData.Contents = cursor.value.Contents;
+				hwiData.Contents2 = cursor.value.Contents2;
 				hwiData.ImageBlob = cursor.value.ImageBlob;
 				if(cursor.value.ImageBlob){
 					hwiData.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursor.value.ImageBlob+'" style="height:200px; width:200px;"/></center>'	
@@ -192,12 +197,13 @@ function mainAbout(){
 
 function mainListOfProblem(){
 	var requestLop = window.indexedDB.open("isaac", 1);
+	var lopArray = [];
+	var lopData = new Object();
+
 	requestLop.onsuccess = function(e) {
 		console.log(e);
 		var dbLop = this.result;
 		var objectStoreLop = dbLop.transaction("gentable").objectStore("gentable");
-		var lopData = new Object();
-		var lopArray = [];
 		
 		objectStoreLop.openCursor().onsuccess = function(event) {
 		  var cursorLop = event.target.result;
@@ -208,6 +214,7 @@ function mainListOfProblem(){
 			lopData2.Title = cursorLop.value.Title;
 			lopData2.Contents = cursorLop.value.Contents;
 			lopData2.PageType = cursorLop.value.PageType;
+			lopData2.detaillist = [];
 			if(lopData2.PageType=='PROBLEMS'){
 				lopArray.push(lopData2);
 			}
@@ -216,18 +223,50 @@ function mainListOfProblem(){
 			cursorLop.continue();
 		  }
 		  else {
-			//alert("No more entries!");
-			lopData.listofproblem = lopArray;
-			console.log(lopData);
-			mainView.router.load({url:'modules/listofproblem/listofproblem.html',context:lopData});
+			//do nothing
+				var objectStoreLop1 = dbLop.transaction("gentabledetails").objectStore("gentabledetails");
+				objectStoreLop1.openCursor().onsuccess = function(event) {
+					var cursorLop1 = event.target.result;
+					console.log(cursorLop1);
+					if (cursorLop1) {
+						var lopData3 = new Object();
+						lopData3.SeqID = cursorLop1.value.SeqID;
+						lopData3.TopicID = cursorLop1.value.TopicID;
+						lopData3.Description = cursorLop1.value.Description;
+						lopData3.ImageBlob = cursorLop1.value.ImageBlob;
+						if(cursorLop1.value.ImageBlob){
+							lopData3.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursorLop1.value.ImageBlob+'" style="height:200px; width:200px;"/></center>'	
+						}
+						//console.log(lopArray[x]);
+						for(var x=0; x<lopArray.length; x++){
+							if(cursorLop1.value.TopicID==lopArray[x].TopicID){
+								lopArray[x].detaillist.push(lopData3);
+							}
+						}
+						//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
+						//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
+						cursorLop1.continue();	
+					}else{
+						//lopArray[x].listofproblemdetails = lopArray1;
+						//alert("No more entries!");
+						lopData.listofproblem = lopArray;
+						console.log(lopData);
+						mainView.router.load({url:'modules/listofproblem/listofproblem.html',context:lopData});
+
+					}
+				};	  	
 		  }
 		};
 	}
+	
+	  
+	
 }
+
 function listofproblemdetail1(obj){
 	var id= obj.id;
 	var searchMe = '#'+id;
-	$$(searchMe).parents("li").toggleClass("accordion-item-expanded");	
+	$$(searchMe).closest("li").toggleClass("accordion-item-expanded");	
 }
 
 function listofproblemdetail(obj){
@@ -546,7 +585,7 @@ function updateLocalDB(){
 				
 					var rec = dataArr[i];
 					
-					var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents, ImageBlob: rec.ImageBlob});
+					var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents, ImageBlob: rec.ImageBlob, Contents2: rec.Contents2});
 				
 					resultSet.onsuccess = function(event) {
 						console.log('added');
@@ -587,6 +626,46 @@ function updateLocalDB(){
 					console.log(rec);
 					
 					var resultSet = objectStore.add({StepID: rec.StepID, SymptomDesc: rec.SymptomDesc, StepDesc: rec.StepDesc, YesStepID: rec.YesStepID, YesStepText: rec.YesStepText, NoStepID: rec.NoStepID, NoStepText: rec.NoStepText, IsHead: rec.IsHead, IsLeaf: rec.IsLeaf});
+				
+					resultSet.onsuccess = function(event) {
+						console.log('added');
+					};
+
+					resultSet.onerror = function(event) {
+					   console.log('skipped');
+					}
+				}
+			};
+		},
+		failure: function(){
+			myApp.alert('Failed to load approval list', 'Error');
+		}
+	});
+	
+	$$.ajax({
+		url: SERVER_ADDRESS + "/gentabledetails?action=GET_ALL_2",
+		contentType: 'jsonp',
+		method: 'POST',
+		type: 'POST',
+		dataType : 'jsonp',
+		crossDomain: true,
+		success: function( response ) {
+			var data = JSON.parse(response);
+			
+			var dataArr = data.data;
+			
+			var request = window.indexedDB.open("isaac", 1);
+			request.onsuccess = function(e) {
+				var db = this.result;
+				var objectStore = db.transaction(["gentabledetails"], "readwrite").objectStore("gentabledetails");
+				objectStore.clear();
+				for(var i=0; i<dataArr.length; i++){
+				
+					var rec = dataArr[i];
+					
+					console.log(rec);
+					
+					var resultSet = objectStore.add({ SeqID: rec.SeqID, TopicID: rec.TopicID, Image: rec.Image, Description: rec.Description, ImageBlob: rec.ImageBlob});
 				
 					resultSet.onsuccess = function(event) {
 						console.log('added');
