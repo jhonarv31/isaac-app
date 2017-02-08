@@ -13,7 +13,7 @@
           <li class="accordion-item">
             <a id={{TopicID}} href="#" class="item-content item-link" onclick='listofproblemdetail1(this)' style="color:#fff;"><!--onclick='listofproblemdetail(this)' -->
               <div class="item-inner">
-                <div class="item-title">{{Topic}}</div>
+                <div class="item-title">{{Title}}</div>
               </div>
             </a>
 			<div class="accordion-item-content">
@@ -48,15 +48,15 @@
 					  <li class="accordion-item">
 						<a id={{SeqID}} href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'>
 						  <div class="item-inner">
-							<div class="item-title">{{Topic}}</div>
+							<div class="item-title">{{Contents}}</div>
 						  </div>
 						</a>
 						<div class="accordion-item-content">
 							<div class="content-block">
-							  {{ImageBlobDisplay}}
-<p style="padding:10px; text-align:justify; white-space:pre-wrap; text-indent:10px;">
-{{Description}}
-</p>
+							    {{ImageBlobDisplay}}
+								<p style="padding:10px; text-align:justify; white-space:pre-wrap; text-indent:10px;">
+								{{Description}}
+								</p>
 							</div>
 						</div>
 					  </li>{{/each}}
