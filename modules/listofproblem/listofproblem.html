@@ -9,56 +9,41 @@
 	</div>
     <div class="page-content">
       <div class="list-block accordion-list">
-        <ul style="background: #878787;">{{#each listofproblem}}
+        <ul style="background: #878787; padding: 5px;">{{#each listofproblem}}
           <li class="accordion-item">
-            <a id={{TopicID}} href="#" class="item-content item-link" onclick='listofproblemdetail1(this)' style="color:#fff;"><!--onclick='listofproblemdetail(this)' -->
+            <a id="{{TopicID}}_Category" href="#" class="item-content item-link" onclick='listofproblemdetail1(this)' style="color:#fff;"><!--onclick='listofproblemdetail(this)' -->
               <div class="item-inner">
-                <div class="item-title">{{Title}}</div>
+                <div class="item-title">{{Category}}</div>
               </div>
             </a>
 			<div class="accordion-item-content">
 				<div class="list-block accordion-list">
-					<!--<ul>
+					<ul style="width:95%; margin:auto;">{{#each this.categorydetaillist}}
 					  <li class="accordion-item">
-						<a id='{{TopicID}}_Test1' href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'>
-						 <div class="item-inner">
-							<div class="item-title">Test1</div>
-						  </div>
-						</a>
-						<div class="accordion-item-content">
-							<div class="content-block">
-							  <p>Test1 Contents</p>
-							</div>
-						</div>
-					  </li>
-					  <li class="accordion-item">
-						<a id='{{TopicID}}_Test2' href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'>
-						 <div class="item-inner">
-							<div class="item-title">Test2</div>
-						  </div>
-						</a>
-						<div class="accordion-item-content">
-							<div class="content-block">
-							  <p>Test2 Contents</p>
-							</div>
-						</div>
-					  </li>
-					</ul>-->
-					<ul style="width:95%; margin:auto;">{{#each this.detaillist}}
-					  <li class="accordion-item">
-						<a id={{SeqID}} href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'>
+						<a id="{{TopicID}}_CategoryDetail" href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'>
 						  <div class="item-inner">
-							<div class="item-title">{{Contents}}</div>
+							<div class="item-title">{{Title}}</div>
 						  </div>
 						</a>
 						<div class="accordion-item-content">
-							<div class="content-block">
-							    {{ImageBlobDisplay}}
-								<p style="padding:10px; text-align:justify; white-space:pre-wrap; text-indent:10px;">
-								{{Description}}
-								</p>
+							<div class="list-block">
+								<ul style="width:90%; margin:auto; background: #878787;">{{#each this.detaillist}}
+									<li>
+									<!--<a id="{{SeqID}}_Detail" href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'>
+									  <div class="item-inner">
+										<div class="item-title" style="color:#fff;">{{Count}}. {{Description}}</div>
+									  </div>
+									</a>
+									<div class="accordion-item-content">-->
+										<div class="content-block" style="color:#fff;">
+											{{Count}}. {{Description}}<br/>
+											{{ImageBlobDisplay}}
+										</div>
+									<!--</div>-->
+									</li>{{/each}}
+								</ul>
+								<center><a id={{TopicID}} href="#" onclick="listofproblemdetail(this)"> See More </a></center>
 							</div>
-						</div>
 					  </li>{{/each}}
 					</ul>
 				</div>

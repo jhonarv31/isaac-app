@@ -216,7 +216,22 @@ function mainListOfProblem(){
 			lopData2.PageType = cursorLop.value.PageType;
 			lopData2.detaillist = [];
 			if(lopData2.PageType=='PROBLEMS'){
-				lopArray.push(lopData2);
+				var found= false;
+				for(var i=0;i<lopArray.length;i++){
+					if(lopArray[i].Category==cursorLop.value.Category){
+						found=true;
+						lopArray[i].categorydetaillist.push(lopData2);
+					}
+				}
+				if(!found){
+					var lopDataCategory = new Object();
+					lopDataCategory.Category = cursorLop.value.Category;
+					lopDataCategory.Title = cursorLop.value.Title;
+					lopDataCategory.TopicID = cursorLop.value.TopicID;
+					lopDataCategory.categorydetaillist = [];
+					lopDataCategory.categorydetaillist.push(lopData2);
+					lopArray.push(lopDataCategory);
+				}
 			}
 			//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
 			//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
@@ -235,13 +250,19 @@ function mainListOfProblem(){
 						lopData3.Description = cursorLop1.value.Description;
 						lopData3.ImageBlob = cursorLop1.value.ImageBlob;
 						if(cursorLop1.value.ImageBlob){
-							lopData3.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursorLop1.value.ImageBlob+'" style="height:200px; width:200px;"/></center>'	
+							lopData3.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursorLop1.value.ImageBlob+'" style="height:150px; width:150px;"/></center>'	
 						}
 						//console.log(lopArray[x]);
 						for(var x=0; x<lopArray.length; x++){
-							if(cursorLop1.value.TopicID==lopArray[x].TopicID){
-								lopArray[x].detaillist.push(lopData3);
+							for(var y=0; y<lopArray[x].categorydetaillist.length;y++){
+								if(cursorLop1.value.TopicID==lopArray[x].categorydetaillist[y].TopicID){
+									lopData3.Count = lopArray[x].categorydetaillist[y].detaillist.length+1;
+									if(lopData3.Count<3){
+										lopArray[x].categorydetaillist[y].detaillist.push(lopData3);
+									}
+								}	
 							}
+
 						}
 						//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
 						//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
@@ -286,16 +307,52 @@ function listofproblemdetail(obj){
 				lopData.TopicID = cursorLop.value.TopicID;
 				lopData.Title = cursorLop.value.Title;
 				lopData.Contents = cursorLop.value.Contents;
-				//hwiArray.push(hwiData2);
-				//hwiData.hardwareinformation = hwiArray;
-				mainView.router.load({url:'modules/listofproblem/listofproblemdetail.html',context:lopData});	
+				lopData.detaillist = [];
+				var objectStoreLop1 = dbLop.transaction("gentabledetails").objectStore("gentabledetails");
+				objectStoreLop1.openCursor().onsuccess = function(event) {
+					var cursorLop1 = event.target.result;
+					//console.log(cursorLop1);
+					if (cursorLop1) {
+						var lopData3 = new Object();
+						lopData3.SeqID = cursorLop1.value.SeqID;
+						lopData3.TopicID = cursorLop1.value.TopicID;
+						lopData3.Description = cursorLop1.value.Description;
+						lopData3.ImageBlob = cursorLop1.value.ImageBlob;
+						if(cursorLop1.value.ImageBlob){
+							lopData3.ImageBlobDisplay = '<center><img alt="image" src="data:image/jpeg;base64,'+cursorLop1.value.ImageBlob+'" style="height:150px; width:150px;"/></center>'	
+						}
+						//console.log(lopArray[x]);
+						//for(var x=0; x<lopArray.length; x++){
+						//	for(var y=0; y<lopArray[x].categorydetaillist.length;y++){
+								if(cursorLop1.value.TopicID==lopData.TopicID){
+									lopData3.Count = lopData.detaillist.length+1;
+						//			if(lopData3.Count<3){
+										lopData.detaillist.push(lopData3);
+						//			}
+								}	
+						//	}
+
+						//}
+						//alert("TopicID: " + cursor.value.TopicID + ", Title:  " + cursor.value.Title+ ", Contents:  " + cursor.value.Contents);
+						//var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents});
+						cursorLop1.continue();	
+					}else{
+						//lopArray[x].listofproblemdetails = lopArray1;
+						//alert("No more entries!");
+						//lopData.listofproblem = lopArray;
+						//console.log(lopData);
+						mainView.router.load({url:'modules/listofproblem/listofproblemdetail.html',context:lopData});
+
+					}
+				};	  	
+				//mainView.router.load({url:'modules/listofproblem/listofproblemdetail.html',context:lopData});	
 			}  
 			cursorLop.continue();
 		  }
 		  else {
 			//alert("No more entries!");
 			//hwiData.hardwareinformation = hwiArray;
-			mainView.router.load({url:'modules/listofproblem/listofproblemdetail.html',context:lopData});
+			//mainView.router.load({url:'modules/listofproblem/listofproblemdetail.html',context:lopData});
 		  }
 		};
 	}
@@ -585,7 +642,7 @@ function updateLocalDB(){
 				
 					var rec = dataArr[i];
 					
-					var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents, ImageBlob: rec.ImageBlob, Contents2: rec.Contents2});
+					var resultSet = objectStore.add({ TopicID: rec.TopicID, PageType: rec.PageType, Image: rec.Image, Title: rec.Title, Contents: rec.Contents, ImageBlob: rec.ImageBlob, Contents2: rec.Contents2, Category: rec.Category});
 				
 					resultSet.onsuccess = function(event) {
 						console.log('added');

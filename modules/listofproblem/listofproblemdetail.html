@@ -9,8 +9,24 @@
     <div class="page-content">
      <div class="content-block">
 		<h3>{{Title}}</h3>
-		<div class="content-block-inner" style="white-space:pre-wrap;">
-		  {{Topic}}
+		<div class="content-block-inner" style="padding-top:0px;">
+		  <div class="list-block" style="margin-top:0px; border-top:none;">
+				<ul style="width:90%; margin:auto;">{{#each detaillist}}
+					<li>
+					<!--<a id="{{SeqID}}_Detail" href="#" class="item-content item-link" onclick='listofproblemdetail1(this)'>
+					  <div class="item-inner">
+						<div class="item-title" style="color:#fff;">{{Count}}. {{Description}}</div>
+					  </div>
+					</a>
+					<div class="accordion-item-content">-->
+						<div>
+							{{Count}}. {{Description}}<br/>
+							{{ImageBlobDisplay}}
+						</div>
+					<!--</div>-->
+					</li>{{/each}}
+				</ul>
+			</div>
 		</div>
 	  </div>
     </div>
