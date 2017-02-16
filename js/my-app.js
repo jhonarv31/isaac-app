@@ -5,7 +5,7 @@ Template7.registerHelper('json_stringify', function (context) {
 
 // Export selectors engine
 var $$ = Dom7;
-var SERVER_ADDRESS = "http://192.168.254.103:8080/isaac";
+var SERVER_ADDRESS = "http://192.168.254.104:8080/isaac";
 
 function hideSplash(){
 	document.getElementById("splash").style.display="none";
@@ -543,7 +543,9 @@ function mainVideos(){
 			videoData2.Contents = cursor.value.Contents;
 			videoData2.PageType = cursor.value.PageType;
 			var videoData3 = new Object();
-			videoData3.html ="<iframe src="+cursor.value.Contents.replace("watch?v=", "embed/")+" frameborder='0'></iframe>";
+			if(cursor.value.Contents){
+				videoData3.html ="<iframe src="+cursor.value.Contents.replace("watch?v=", "embed/")+" frameborder='0'></iframe>";
+			}
 			videoData3.caption = cursor.value.Title;
 			if(videoData2.PageType=='VIDEOS'){
 				videoArray.push(videoData2);
