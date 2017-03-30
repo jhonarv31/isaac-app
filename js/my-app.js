@@ -5,7 +5,7 @@ Template7.registerHelper('json_stringify', function (context) {
 
 // Export selectors engine
 var $$ = Dom7;
-var SERVER_ADDRESS = "http://198.38.85.53:8080/isaa";
+var SERVER_ADDRESS = "http://198.38.85.53:8080/isaac";
 
 function hideSplash(){
 	document.getElementById("splash").style.display="none";
